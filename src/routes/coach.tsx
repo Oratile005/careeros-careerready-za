@@ -6,6 +6,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { copyText } from "@/components/AiOutput";
+import { Markdown } from "@/components/Markdown";
 import { streamChat, type ChatMessage } from "@/lib/use-ai";
 import { useCareer } from "@/lib/career-store";
 import { cn } from "@/lib/utils";
