@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TranslatorRouteImport } from './routes/translator'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
 import { Route as InterviewRouteImport } from './routes/interview'
+import { Route as CoachRouteImport } from './routes/coach'
 import { Route as ApplicationsRouteImport } from './routes/applications'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
@@ -30,6 +31,11 @@ const OpportunitiesRoute = OpportunitiesRouteImport.update({
 const InterviewRoute = InterviewRouteImport.update({
   id: '/interview',
   path: '/interview',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoachRoute = CoachRouteImport.update({
+  id: '/coach',
+  path: '/coach',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApplicationsRoute = ApplicationsRouteImport.update({
@@ -56,6 +62,7 @@ const ApiAiRoute = ApiAiRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/applications': typeof ApplicationsRoute
+  '/coach': typeof CoachRoute
   '/interview': typeof InterviewRoute
   '/opportunities': typeof OpportunitiesRoute
   '/translator': typeof TranslatorRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/applications': typeof ApplicationsRoute
+  '/coach': typeof CoachRoute
   '/interview': typeof InterviewRoute
   '/opportunities': typeof OpportunitiesRoute
   '/translator': typeof TranslatorRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/applications': typeof ApplicationsRoute
+  '/coach': typeof CoachRoute
   '/interview': typeof InterviewRoute
   '/opportunities': typeof OpportunitiesRoute
   '/translator': typeof TranslatorRoute
@@ -86,6 +95,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/applications'
+    | '/coach'
     | '/interview'
     | '/opportunities'
     | '/translator'
@@ -95,6 +105,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/applications'
+    | '/coach'
     | '/interview'
     | '/opportunities'
     | '/translator'
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/applications'
+    | '/coach'
     | '/interview'
     | '/opportunities'
     | '/translator'
@@ -114,6 +126,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApplicationsRoute: typeof ApplicationsRoute
+  CoachRoute: typeof CoachRoute
   InterviewRoute: typeof InterviewRoute
   OpportunitiesRoute: typeof OpportunitiesRoute
   TranslatorRoute: typeof TranslatorRoute
@@ -142,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/interview'
       fullPath: '/interview'
       preLoaderRoute: typeof InterviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/coach': {
+      id: '/coach'
+      path: '/coach'
+      fullPath: '/coach'
+      preLoaderRoute: typeof CoachRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/applications': {
@@ -178,6 +198,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApplicationsRoute: ApplicationsRoute,
+  CoachRoute: CoachRoute,
   InterviewRoute: InterviewRoute,
   OpportunitiesRoute: OpportunitiesRoute,
   TranslatorRoute: TranslatorRoute,
