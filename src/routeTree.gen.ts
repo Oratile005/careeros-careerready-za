@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TranslatorRouteImport } from './routes/translator'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
 import { Route as InterviewRouteImport } from './routes/interview'
 import { Route as ApplicationsRouteImport } from './routes/applications'
@@ -16,6 +17,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as ApiAiRouteImport } from './routes/api/ai'
 
+const TranslatorRoute = TranslatorRouteImport.update({
+  id: '/translator',
+  path: '/translator',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OpportunitiesRoute = OpportunitiesRouteImport.update({
   id: '/opportunities',
   path: '/opportunities',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/applications': typeof ApplicationsRoute
   '/interview': typeof InterviewRoute
   '/opportunities': typeof OpportunitiesRoute
+  '/translator': typeof TranslatorRoute
   '/api/ai': typeof ApiAiRoute
   '/api/chat': typeof ApiChatRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/applications': typeof ApplicationsRoute
   '/interview': typeof InterviewRoute
   '/opportunities': typeof OpportunitiesRoute
+  '/translator': typeof TranslatorRoute
   '/api/ai': typeof ApiAiRoute
   '/api/chat': typeof ApiChatRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/applications': typeof ApplicationsRoute
   '/interview': typeof InterviewRoute
   '/opportunities': typeof OpportunitiesRoute
+  '/translator': typeof TranslatorRoute
   '/api/ai': typeof ApiAiRoute
   '/api/chat': typeof ApiChatRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/applications'
     | '/interview'
     | '/opportunities'
+    | '/translator'
     | '/api/ai'
     | '/api/chat'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/applications'
     | '/interview'
     | '/opportunities'
+    | '/translator'
     | '/api/ai'
     | '/api/chat'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/applications'
     | '/interview'
     | '/opportunities'
+    | '/translator'
     | '/api/ai'
     | '/api/chat'
   fileRoutesById: FileRoutesById
@@ -104,12 +116,20 @@ export interface RootRouteChildren {
   ApplicationsRoute: typeof ApplicationsRoute
   InterviewRoute: typeof InterviewRoute
   OpportunitiesRoute: typeof OpportunitiesRoute
+  TranslatorRoute: typeof TranslatorRoute
   ApiAiRoute: typeof ApiAiRoute
   ApiChatRoute: typeof ApiChatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/translator': {
+      id: '/translator'
+      path: '/translator'
+      fullPath: '/translator'
+      preLoaderRoute: typeof TranslatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/opportunities': {
       id: '/opportunities'
       path: '/opportunities'
@@ -160,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApplicationsRoute: ApplicationsRoute,
   InterviewRoute: InterviewRoute,
   OpportunitiesRoute: OpportunitiesRoute,
+  TranslatorRoute: TranslatorRoute,
   ApiAiRoute: ApiAiRoute,
   ApiChatRoute: ApiChatRoute,
 }
