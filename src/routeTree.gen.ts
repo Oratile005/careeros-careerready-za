@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TranslatorRouteImport } from './routes/translator'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
@@ -23,6 +24,11 @@ import { Route as ApiAiRouteImport } from './routes/api/ai'
 const TranslatorRoute = TranslatorRouteImport.update({
   id: '/translator',
   path: '/translator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SettingsRoute = SettingsRouteImport.update({
@@ -79,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/opportunities': typeof OpportunitiesRoute
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/translator': typeof TranslatorRoute
   '/api/ai': typeof ApiAiRoute
   '/api/chat': typeof ApiChatRoute
@@ -91,6 +98,7 @@ export interface FileRoutesByTo {
   '/opportunities': typeof OpportunitiesRoute
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/translator': typeof TranslatorRoute
   '/api/ai': typeof ApiAiRoute
   '/api/chat': typeof ApiChatRoute
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   '/opportunities': typeof OpportunitiesRoute
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/translator': typeof TranslatorRoute
   '/api/ai': typeof ApiAiRoute
   '/api/chat': typeof ApiChatRoute
@@ -118,6 +127,7 @@ export interface FileRouteTypes {
     | '/opportunities'
     | '/profile'
     | '/settings'
+    | '/sitemap.xml'
     | '/translator'
     | '/api/ai'
     | '/api/chat'
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | '/opportunities'
     | '/profile'
     | '/settings'
+    | '/sitemap.xml'
     | '/translator'
     | '/api/ai'
     | '/api/chat'
@@ -142,6 +153,7 @@ export interface FileRouteTypes {
     | '/opportunities'
     | '/profile'
     | '/settings'
+    | '/sitemap.xml'
     | '/translator'
     | '/api/ai'
     | '/api/chat'
@@ -155,6 +167,7 @@ export interface RootRouteChildren {
   OpportunitiesRoute: typeof OpportunitiesRoute
   ProfileRoute: typeof ProfileRoute
   SettingsRoute: typeof SettingsRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TranslatorRoute: typeof TranslatorRoute
   ApiAiRoute: typeof ApiAiRoute
   ApiChatRoute: typeof ApiChatRoute
@@ -167,6 +180,13 @@ declare module '@tanstack/react-router' {
       path: '/translator'
       fullPath: '/translator'
       preLoaderRoute: typeof TranslatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/settings': {
@@ -243,6 +263,7 @@ const rootRouteChildren: RootRouteChildren = {
   OpportunitiesRoute: OpportunitiesRoute,
   ProfileRoute: ProfileRoute,
   SettingsRoute: SettingsRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TranslatorRoute: TranslatorRoute,
   ApiAiRoute: ApiAiRoute,
   ApiChatRoute: ApiChatRoute,
