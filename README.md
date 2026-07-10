@@ -383,4 +383,4 @@ This project is licensed under the MIT License.
 
 **Built with ❤️ for South African graduates and early-career professionals.**
 
-You can save this directly as `README.md` in your project root.
+
