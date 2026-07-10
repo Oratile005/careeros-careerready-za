@@ -116,9 +116,15 @@ function Coach() {
                   </div>
                 )}
                 <div className={cn("group max-w-[80%] rounded-2xl px-4 py-2.5 text-sm", m.role === "user" ? "bg-primary text-primary-foreground" : "border border-border bg-white/[0.03]")}>
-                  <p className="whitespace-pre-wrap leading-relaxed">
-                    {m.content || (streaming && i === messages.length - 1 ? "…" : "")}
-                  </p>
+                  {m.role === "assistant" ? (
+                    m.content ? (
+                      <Markdown>{m.content}</Markdown>
+                    ) : (
+                      <p className="leading-relaxed">{streaming && i === messages.length - 1 ? "…" : ""}</p>
+                    )
+                  ) : (
+                    <p className="whitespace-pre-wrap leading-relaxed">{m.content}</p>
+                  )}
                   {m.role === "assistant" && m.content && (
                     <button onClick={() => copyText(m.content)} className="mt-1.5 flex items-center gap-1 text-[10px] text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100">
                       <Copy className="h-3 w-3" /> Copy
