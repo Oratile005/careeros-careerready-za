@@ -85,13 +85,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Level up from Graduate to Hired. CareerOS is the AI career accelerator for South African graduates — CVs, mock interviews, bursaries, learnerships and more.",
       },
       { name: "author", content: "CareerOS" },
-      { property: "og:title", content: "CareerOS — Graduate to Hired" },
+      { property: "og:title", content: "CareerOS — Your AI Career Coach for South Africa" },
       {
         property: "og:description",
-        content: "Your AI Career Coach for the South African job market.",
+        content: "Level up from Graduate to Hired. CareerOS is the AI career accelerator for South African graduates — CVs, mock interviews, bursaries, learnerships and more.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "CareerOS — Your AI Career Coach for South Africa" },
+      { name: "twitter:description", content: "Level up from Graduate to Hired. CareerOS is the AI career accelerator for South African graduates — CVs, mock interviews, bursaries, learnerships and more." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/399d400a-eb5c-4dc2-b935-602cb78ad47d" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/399d400a-eb5c-4dc2-b935-602cb78ad47d" },
     ],
     links: [
       {
