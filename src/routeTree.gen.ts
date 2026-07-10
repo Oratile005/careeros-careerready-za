@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TranslatorRouteImport } from './routes/translator'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
 import { Route as InterviewRouteImport } from './routes/interview'
@@ -22,6 +23,11 @@ import { Route as ApiAiRouteImport } from './routes/api/ai'
 const TranslatorRoute = TranslatorRouteImport.update({
   id: '/translator',
   path: '/translator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileRoute = ProfileRouteImport.update({
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/interview': typeof InterviewRoute
   '/opportunities': typeof OpportunitiesRoute
   '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
   '/translator': typeof TranslatorRoute
   '/api/ai': typeof ApiAiRoute
   '/api/chat': typeof ApiChatRoute
@@ -83,6 +90,7 @@ export interface FileRoutesByTo {
   '/interview': typeof InterviewRoute
   '/opportunities': typeof OpportunitiesRoute
   '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
   '/translator': typeof TranslatorRoute
   '/api/ai': typeof ApiAiRoute
   '/api/chat': typeof ApiChatRoute
@@ -95,6 +103,7 @@ export interface FileRoutesById {
   '/interview': typeof InterviewRoute
   '/opportunities': typeof OpportunitiesRoute
   '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
   '/translator': typeof TranslatorRoute
   '/api/ai': typeof ApiAiRoute
   '/api/chat': typeof ApiChatRoute
@@ -108,6 +117,7 @@ export interface FileRouteTypes {
     | '/interview'
     | '/opportunities'
     | '/profile'
+    | '/settings'
     | '/translator'
     | '/api/ai'
     | '/api/chat'
@@ -119,6 +129,7 @@ export interface FileRouteTypes {
     | '/interview'
     | '/opportunities'
     | '/profile'
+    | '/settings'
     | '/translator'
     | '/api/ai'
     | '/api/chat'
@@ -130,6 +141,7 @@ export interface FileRouteTypes {
     | '/interview'
     | '/opportunities'
     | '/profile'
+    | '/settings'
     | '/translator'
     | '/api/ai'
     | '/api/chat'
@@ -142,6 +154,7 @@ export interface RootRouteChildren {
   InterviewRoute: typeof InterviewRoute
   OpportunitiesRoute: typeof OpportunitiesRoute
   ProfileRoute: typeof ProfileRoute
+  SettingsRoute: typeof SettingsRoute
   TranslatorRoute: typeof TranslatorRoute
   ApiAiRoute: typeof ApiAiRoute
   ApiChatRoute: typeof ApiChatRoute
@@ -154,6 +167,13 @@ declare module '@tanstack/react-router' {
       path: '/translator'
       fullPath: '/translator'
       preLoaderRoute: typeof TranslatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/profile': {
@@ -222,6 +242,7 @@ const rootRouteChildren: RootRouteChildren = {
   InterviewRoute: InterviewRoute,
   OpportunitiesRoute: OpportunitiesRoute,
   ProfileRoute: ProfileRoute,
+  SettingsRoute: SettingsRoute,
   TranslatorRoute: TranslatorRoute,
   ApiAiRoute: ApiAiRoute,
   ApiChatRoute: ApiChatRoute,
